@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type = "text/javascript">
+function onlyAlphabets(e, t) 
+{
+            try 
+            {
+                if (window.event) 
+                {
+                    var charCode = window.event.keyCode;
+                }
+                else if (e) {
+                    var charCode = e.which;
+                }
+                else { return true; }
+                if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123))
+                    return true;
+                else
+                    return false;
+            }
+            catch (err) 
+            {
+                alert(err.Description);
+            }
+}
+
+function ValidateForm(form)
+{
+	
+    
+    if ( ( form.sex[0].checked == false ) && ( form.sex[1].checked == false ) ) 
+	{
+	alert ( "Please choose your Gender: Male or Female" ); 
+	return false;
+	}
+        
+	var c=form.ph_no.value;
+  	if(c.length != 10 )
+	 {
+  	 alert('Invalid number');
+  	form.ph_no.value="";
+  	form.ph_no.focus();
+ 	return false;
+ 	}
+        var e_mail = form.email.value;
+	if(e_mail!="")
+	{	var atpos = e_mail.indexOf("@");
+	 	var dotpos = e_mail.lastIndexOf(".");
+		if (atpos < 1 || dotpos - atpos < 2 ) 
+		{	alert("Not a valid e-mail address");
+			form.mail.focus();
+		}
+	    	return false;
+        
+   	}
+	if(form.Caste.value == "caste")
+	{
+		alert('Please choose your category');
+	       return false;
+	}
+	if(form.branches.value == "branch")
+	{
+		alert('Please choose your branch');
+	       return false;
+	}
+        if ( ( form.y[0].checked == false ) && ( form.y[1].checked == false ) ) 
+	{
+	alert ( "Please choose your Year: First or Second" ); 
+	return false;
+	}
+}
+</script>
+
+</head>
+<body bgcolor = #E5C69F>
+<center><img src = "PIIT1.png" height="150" width="150"></center> 
+<center><b> PILLAI  INSTITUE  OF INFORMATION TECHNOLOGY </b></center>
+<center> Sector-16, New Panvel</center>
+<br>
+<center><i><u> ADMISSION FORM </u></i></center>
+<form method="post"  action="Admsn_form.php" target="_blank" onsubmit="Admsn_form.php">
+<fieldset>
+<legend> PERSONAL INFORMATION </legend>
+First name:<br>
+<input type="text" name="firstname" required onkeypress="return onlyAlphabets(event,this);">
+<br>
+Last name:<br>
+<input type="text" name="lastname" required onkeypress="return onlyAlphabets(event,this);">
+<br><br>
+
+ D.O.B:
+<br><br>
+  <input type="date" name="dob" required>
+<br><br>
+ Age:
+<br><br>
+  <input type="number" name="age" min="16" required>
+<br><br>
+Sex :
+<br><br>
+<input type="radio" name="sex" value="1">Male
+<br><br>
+<input type="radio" name="sex" value="2">Female
+<br><br>
+ Tel/Mob no:
+<br><br>
+  +91<input type="tel" name="ph_no" required >
+<br><br>
+E-mail:
+<br><br>
+  <input type="email" name="email" required >
+<br><br>
+Category :
+<br><br>
+<select name="Caste">
+    <option value="caste">Caste</option>
+    <option value="open">Open</option>
+ <option value="scst">SC or ST</option>
+ <option value="obc">OBC</option>
+</select>
+<br><br>
+Address : 
+<br><br>
+<textarea name="Address" rows="10" cols="20" required>
+</textarea>
+<br><br>
+</fieldset>
+<br><br>
+<fieldset>
+<legend> ACADEMIC INFORMATION AND PREFERNCES </legend>
+Percentage in 10th : 
+<br><br>
+ <input type="number" name="10marks" min="35" max = "100" required >
+<br><br>
+Percentage in 12th :
+<br><br>
+ <input type="number" name="12marks" min="80" max = "100" required >
+<br><br>
+Score in IIT Main :
+<br><br>
+ <input type="number" name="iitmain"  min="120" max="200" required>
+<br><br>
+Branch of Engineering Applied for : 
+<br><br>
+<select name="branches">
+    <option value="branch">Branch</option>
+    <option value="comp">Computer Engineering</option>
+    <option value="etrx">Electronics Engineering</option>
+    <option value="extc">Electronics and Telecommunication Engineering</option>
+    <option value="auto">Automobile Engineering</option>
+    <option value="mech">Mechanical Engineering</option>
+  </select>
+<br><br>
+</fieldset>
+<br><br>
+<input type="submit" value"submit" onClick=" ValidateForm(this.form)">
+<br><br>
+<input type="reset" value="Reset">
+</form>
+</body>
+</html>
